@@ -1,4 +1,13 @@
 insert into category (description) values ('japanese');
 insert into category (description) values ('mexican');
-insert into unit_of_measure (description) values ('ml');
-insert into unit_of_measure (description) values ('');
+insert into category (description) values ('american');
+insert into unit_of_measure (description) values ('teaspoon');
+insert into unit_of_measure (description) values ('teaspoons');
+insert into unit_of_measure (description) values ('dash');
+insert into unit_of_measure (description) values ('dashs');
+insert into unit_of_measure (description) values ('piece');
+insert into unit_of_measure (description) values ('pieces');
+insert into unit_of_measure (description) values ('tablespoon');
+insert into unit_of_measure (description) values ('tablespoons');
+insert into unit_of_measure (description) values ('cup');
+insert into unit_of_measure (description) values ('cups');
