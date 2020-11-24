@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Recipe Home</title>
+</head>
+<body>
+<h1>My Recipes!</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th> Recipe </th>
+        <th> Source </th>
+        <th> Ingredients </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${recipes.isEmpty()}">
+        <td colspan="2"> No Recipes Available </td>
+    </tr>
+    <tr th:each="recipe : ${recipes}">
+        <td><span th:text="${recipe.getDescription()}"> Ingredients </span></td>
+        <td><span th:text="${recipe.getSource()}"> Source </span></td>
+        <td>
+            <ul th:each="ingridient : ${recipe.getIngredients()}">
+                <li><span th:text="${ingridient.getAmount()} + ' ' + ${ingridient.getUnitOfMeasure().getDescription()} + ' ' + ${ingridient.getDescription()}">1 Cup Coffee</span></li>
+            </ul>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
