@@ -2,6 +2,7 @@ package guru.springframework.controller.Integrationstests;
 
 import guru.springframework.controller.IndexController;
 import guru.springframework.domain.Recipe;
+import guru.springframework.service.RecipeService;
 import guru.springframework.service.RecipeServiceImpl;
 import lombok.SneakyThrows;
 import org.junit.Before;
@@ -22,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class IndexControllerIntegrationstest {
 
     @Mock
-    RecipeServiceImpl recipeService;
+    RecipeService recipeService;
 
     IndexController controller;
 
@@ -35,7 +36,7 @@ public class IndexControllerIntegrationstest {
 
     @SneakyThrows
     @Test
-    public void testGetRecipe() {
+    public void testFindRecipes() {
         Recipe recipe = new Recipe();
         recipe.setId(1L);
         List<Recipe> list = new ArrayList<Recipe>();

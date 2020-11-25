@@ -44,6 +44,7 @@ public class Bootstrap implements CommandLineRunner {
         wrap.setNotes(createGuacamoleNotes());
         wrap.setCategories(createWrapCategories());
         wrap.setIngredients(createWrapIngredients());
+        wrap.setDifficulty(Difficulty.EASY);
         return wrap;
     }
 
@@ -81,6 +82,7 @@ public class Bootstrap implements CommandLineRunner {
         guacamoleRecipe.setNotes(createGuacamoleNotes());
         guacamoleRecipe.setCategories(createGuacamoleCategories());
         guacamoleRecipe.setIngredients(createGuacamoleIngredients());
+        guacamoleRecipe.setDifficulty(Difficulty.EASY);
         return guacamoleRecipe;
     }
 
