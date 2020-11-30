@@ -50,11 +50,6 @@ public class Recipe {
         notes.setRecipe(this);
     }
 
-//    public void setCategories(Set<Category> categories) {
-//        this.categories = categories;
-//        categories.stream().forEach(categorie -> categorie.getRecipes().add(this));
-//    }
-
     /**
      * Bidirectional setter
      * @param ingredients
