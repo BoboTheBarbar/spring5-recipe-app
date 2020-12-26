@@ -11,7 +11,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.Set;
+
+import static java.lang.Long.getLong;
+import static java.lang.Long.parseLong;
 
 /**
  * Created by jt on 6/28/17.
@@ -111,5 +116,31 @@ public class IngredientServiceImpl implements IngredientService {
             return ingredientToIngredientCommand.convert(savedIngredientOptional.get());
         }
 
+    }
+
+    @Override
+    public boolean deleteIngredientByRecipeIdAndIngredientId(String recipeId, String ingredientId) {
+        Long recipeIdAsLong = parseLong(recipeId);
+        Optional<Recipe> recipeOptional = recipeRepository.findById(recipeIdAsLong);
+
+        if(!recipeOptional.isPresent()){
+            log.error("Recipe not found for id: " + recipeId);
+            return false;
+        } else {
+            Recipe recipe = recipeOptional.get();
+            Set<Ingredient> ingredients = recipe.getIngredients();
+
+            Optional<Ingredient> ingredient = ingredients.stream().filter(ing -> ing.getId().equals(parseLong(ingredientId))).findAny();
+            if(ingredient.isPresent()) {
+//                ingredient.get().
+                ingredient.get().setRecipe(null);
+                ingredients.remove(ingredient.get());
+                recipeRepository.save(recipe);
+                return true;
+            } else {
+                throw new NoSuchElementException("Zutat mit id:" + parseLong(ingredientId) + " nicht gefunden.");
+//                return false;
+            }
+        }
     }
 }

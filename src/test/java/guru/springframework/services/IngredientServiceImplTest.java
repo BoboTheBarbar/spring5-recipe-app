@@ -16,7 +16,7 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
@@ -107,5 +107,23 @@ public class IngredientServiceImplTest {
         verify(recipeRepository, times(1)).findById(anyLong());
         verify(recipeRepository, times(1)).save(any(Recipe.class));
 
+    }
+
+    @Test
+    public void testDeleteIngredientByRecipeIdAndIngredientId() {
+        Recipe recipe = new Recipe();
+        recipe.setId(2L);
+
+        Ingredient ingredient = new Ingredient();
+        ingredient.setId(3L);
+
+        recipe.addIngredient(ingredient);
+
+        assertTrue(recipe.getIngredients().contains(ingredient));
+
+        when(recipeRepository.findById(anyLong())).thenReturn(Optional.of(recipe));
+        ingredientService.deleteIngredientByRecipeIdAndIngredientId("2", "3");
+
+        assertFalse(recipe.getIngredients().contains(ingredient));
     }
 }
